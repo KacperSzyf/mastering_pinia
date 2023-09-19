@@ -17,7 +17,7 @@ export const useTaskStore = defineStore('taskStore', {
       return this.favourites.length
     },
     totalTasks: (state) => {
-      return state.task.length
+      return state.tasks.length
     }
   }
 })
