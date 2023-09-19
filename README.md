@@ -1,6 +1,8 @@
 # mastering_pinia
 Learning Pinia store managment for Vue.js
 
+I'll be following [Net Ninjas Pinia tutorial playlist](https://www.youtube.com/playlist?list=PL4cUxeGkcC9hp28dYyYBy3xoOdoeNw-hD)
+
 ## WTF is a Store
 
 A store is a like a big box to keep information stored and organised.
