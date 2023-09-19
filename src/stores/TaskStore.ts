@@ -8,5 +8,10 @@ export const useTaskStore = defineStore('taskStore', {
       { id: 3, title: 'find some free time', isFav: true }
     ],
     name: 'pinia tasks'
-  })
+  }),
+  getters: {
+    favourites() {
+        return this.tasks.filter(task => task.isFav) 
+    }
+  }
 })
