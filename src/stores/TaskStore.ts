@@ -11,7 +11,13 @@ export const useTaskStore = defineStore('taskStore', {
   }),
   getters: {
     favourites() {
-        return this.tasks.filter(task => task.isFav) 
+      return this.tasks.filter((task) => task.isFav)
+    },
+    countFavourites() {
+      return this.favourites.length
+    },
+    totalTasks: (state) => {
+      return state.task.length
     }
   }
 })
