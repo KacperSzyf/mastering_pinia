@@ -34,19 +34,34 @@ export const useTaskStore = defineStore('taskStore', {
         this.loading = false
       }, 2000)
     },
-    addTask(task: Task) {
+    async addTask(task: Task) {
       this.tasks.push(task)
+
+      const res: Response = await fetch('http://localhost:3000/tasks', {
+        method: 'POST',
+        body: JSON.stringify(task),
+        headers: {'Content-Type': 'application/json'}
+      })
     },
-    removeTask(taskId: number) {
+    async removeTask(taskId: number) {
       this.tasks = this.tasks.filter((task) => {
         return task.id !== taskId
       })
+
+      const res: Response = await fetch('http://localhost:3000/tasks/' + taskId, {
+        method: 'DELETE',
+      })
     },
-    toggleFav(taskId: number) {
+    async toggleFav(taskId: number) {
       const task: Task | undefined = this.tasks.find((t) => t.id === taskId)
       if (task) {
         task.isFav = !task.isFav
       }
+      const res: Response = await fetch('http://localhost:3000/tasks/'+ taskId, {
+        method: 'PATCH',
+        body: JSON.stringify({isFav: task.isFav}),
+        headers: {'Content-Type': 'application/json'}
+      })
     }
   }
 })
