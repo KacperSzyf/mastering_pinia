@@ -6,7 +6,7 @@ body {
   margin: 0;
 }
 body * {
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 
 /* header */
@@ -41,12 +41,13 @@ header h1 {
   background: #fff;
   margin-top: 20px;
   border-radius: 4px;
-  box-shadow: 2px 4px 6px rgba(0,0,0,0.05);
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.task h3, .task .icons {
+.task h3,
+.task .icons {
   display: inline-block;
 }
 .task .icons {
@@ -95,15 +96,27 @@ form button {
   background: #ffd859;
   border: 0;
   padding: 10px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   border-radius: 6px;
   cursor: pointer;
   font-size: 1em;
 }
+
 form input {
   border: 0;
   padding: 10px;
   border-radius: 6px;
   color: #555;
   font-size: 1em;
+}
+
+/* loading state */
+.loading {
+  max-width: 640px;
+  border: 1px solid #ffd859;
+  background: #ffe9a0;
+  color: #3a3a3a;
+  padding: 5px 0;
+  text-align: center;
+  margin: 30px auto;
 }

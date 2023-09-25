@@ -9,6 +9,8 @@
     <div class="new-task-form">
         <TaskForm/>
     </div>
+    <!-- loading -->
+    <div class="loading" v-if="taskStore.loading">loading tasks...</div>
     <!-- filer -->
     <nav class = "filter">
       <button @click="filter = 'all'">show all</button>
@@ -39,6 +41,8 @@ export default {
   components: { TaskForm, TaskDetails },
   setup() {
     const taskStore = useTaskStore()
+    //fetch tasks
+    taskStore.getTasks()
     const filter = ref('all')
 
     return { taskStore, filter }

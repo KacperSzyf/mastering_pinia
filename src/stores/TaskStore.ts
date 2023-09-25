@@ -8,16 +8,13 @@ export type Task = {
 
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
-    tasks: [
-      { id: 1, title: 'learn to code', isFav: false },
-      { id: 2, title: 'get rid of imposter syndrome', isFav: true },
-      { id: 3, title: 'find some free time', isFav: true }
-    ],
+    tasks: [],
+    loading: false,
     name: 'pinia tasks'
   }),
   getters: {
     favourites(): Array<Task> {
-      return this.tasks.filter((task) => task.isFav)
+      return this.tasks.filter((task: Task) => task.isFav)
     },
     countFavourites(): number {
       return this.favourites.length
@@ -27,6 +24,16 @@ export const useTaskStore = defineStore('taskStore', {
     }
   },
   actions: {
+    async getTasks() {
+      this.loading = true
+      const res = await fetch('http://localhost:3000/tasks')
+      const data = await res.json()
+
+      this.tasks = data
+      setTimeout(() => {
+        this.loading = false
+      }, 2000)
+    },
     addTask(task: Task) {
       this.tasks.push(task)
     },
@@ -36,8 +43,8 @@ export const useTaskStore = defineStore('taskStore', {
       })
     },
     toggleFav(taskId: number) {
-      const task: Task | undefined = this.tasks.find(t => t.id === taskId)
-      if(task){
+      const task: Task | undefined = this.tasks.find((t) => t.id === taskId)
+      if (task) {
         task.isFav = !task.isFav
       }
     }
