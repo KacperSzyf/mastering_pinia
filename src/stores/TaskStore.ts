@@ -29,8 +29,8 @@ export const useTaskStore = defineStore('taskStore', {
       const res = await fetch('http://localhost:3000/tasks')
       const data = await res.json()
 
-      this.tasks = data
       setTimeout(() => {
+        this.tasks = data
         this.loading = false
       }, 2000)
     },
@@ -40,7 +40,7 @@ export const useTaskStore = defineStore('taskStore', {
       const res: Response = await fetch('http://localhost:3000/tasks', {
         method: 'POST',
         body: JSON.stringify(task),
-        headers: {'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
       })
     },
     async removeTask(taskId: number) {
@@ -49,7 +49,7 @@ export const useTaskStore = defineStore('taskStore', {
       })
 
       const res: Response = await fetch('http://localhost:3000/tasks/' + taskId, {
-        method: 'DELETE',
+        method: 'DELETE'
       })
     },
     async toggleFav(taskId: number) {
@@ -57,10 +57,10 @@ export const useTaskStore = defineStore('taskStore', {
       if (task) {
         task.isFav = !task.isFav
       }
-      const res: Response = await fetch('http://localhost:3000/tasks/'+ taskId, {
+      const res: Response = await fetch('http://localhost:3000/tasks/' + taskId, {
         method: 'PATCH',
-        body: JSON.stringify({isFav: task.isFav}),
-        headers: {'Content-Type': 'application/json'}
+        body: JSON.stringify({ isFav: task.isFav }),
+        headers: { 'Content-Type': 'application/json' }
       })
     }
   }

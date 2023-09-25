@@ -24,5 +24,28 @@ When defining a Store you want to store the result of `defineStore` in a
 constant because the return value is a function.
 And when we envoke that funtion we can access the function within a component.
 
+## Useful Bits
+
+You can reset a store state to default using `storeName.$reset` function.
+This can be accessed directy on a store, either in a setup function or a template.
+
+`storeToRefs` hook, this gets all state properties and getters out of the store and creates refs out of them
+`storeToRefs` does not allow for actions to be used
+
+#### How to Run
+
+Make sure you have Vue.js and JSON Server installed.
+
+1. set up JSON db with the following
+```
+json-server -w db/db.json 
+```
+2. run the vue project with
+```
+npm run dev
+```
+3. head over to [http://localhost:5173/](http://localhost:5173/) in your browser
+
+
 
 
