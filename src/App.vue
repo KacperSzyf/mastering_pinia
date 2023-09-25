@@ -5,6 +5,10 @@
       <img src="./assets/pinia-logo.svg" alt="pinia pineapple logo" />
       <h1>{{ taskStore.name }}</h1>
     </header>
+    <!-- new task form -->
+    <div class="new-task-form">
+        <TaskForm/>
+    </div>
     <!-- filer -->
     <nav class = "filter">
       <button @click="filter = 'all'">show all</button>
@@ -12,7 +16,7 @@
     </nav>
     <!-- task list -->
     <div class="task-list" v-if="filter === 'all'">
-      <p>you have {{ taskStore.totalTasks}} left todo</p>
+      <p>you have {{ taskStore.totalTasks}} left to do</p>
       <div v-for="task in taskStore.tasks" :key="task.id">
         <TaskDetails :task="task" />
       </div>
@@ -29,9 +33,10 @@
 <script>
 import { ref } from 'vue'
 import TaskDetails from './components/TaskDetails.vue'
+import TaskForm from './components/TaskForm.vue'
 import { useTaskStore } from './stores/TaskStore'
 export default {
-  components: { TaskDetails },
+  components: { TaskForm, TaskDetails },
   setup() {
     const taskStore = useTaskStore()
     const filter = ref('all')
