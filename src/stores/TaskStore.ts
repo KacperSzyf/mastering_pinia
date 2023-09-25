@@ -1,5 +1,11 @@
 import { defineStore } from 'pinia'
 
+export type Task = {
+  id: number
+  title: string
+  isFav: boolean
+}
+
 export const useTaskStore = defineStore('taskStore', {
   state: () => ({
     tasks: [
@@ -10,10 +16,10 @@ export const useTaskStore = defineStore('taskStore', {
     name: 'pinia tasks'
   }),
   getters: {
-    favourites() {
+    favourites(): Array<Task> {
       return this.tasks.filter((task) => task.isFav)
     },
-    countFavourites() {
+    countFavourites(): number {
       return this.favourites.length
     },
     totalTasks: (state) => {
@@ -21,8 +27,19 @@ export const useTaskStore = defineStore('taskStore', {
     }
   },
   actions: {
-    addTask(task) {
+    addTask(task: Task) {
       this.tasks.push(task)
+    },
+    removeTask(taskId: number) {
+      this.tasks = this.tasks.filter((task) => {
+        return task.id !== taskId
+      })
+    },
+    toggleFav(taskId: number) {
+      const task: Task | undefined = this.tasks.find(t => t.id === taskId)
+      if(task){
+        task.isFav = !task.isFav
+      }
     }
   }
 })
